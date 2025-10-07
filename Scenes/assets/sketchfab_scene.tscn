@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://cug0mg0kiddlh"]
+
+[ext_resource type="PackedScene" uid="uid://cbl7a4m14sa3g" path="res://Assets/classic_street_light_pack/scene.gltf" id="1_xuiv4"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xuiv4"]
+transparency = 1
+blend_mode = 1
+metallic_specular = 1.0
+roughness = 0.0
+emission_energy_multiplier = 14.53
+clearcoat_roughness = 0.0
+refraction_scale = -0.22
+
+[node name="Sketchfab_Scene" instance=ExtResource("1_xuiv4")]
+
+[node name="polySurface3" parent="Sketchfab_model/24ff02b784334ec5a256ad9bbd6111a2_fbx/RootNode/lamp9" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 53.1776, 15.4501, 171.179)
+
+[node name="polySurface3_lamp_04_0" parent="Sketchfab_model/24ff02b784334ec5a256ad9bbd6111a2_fbx/RootNode/lamp9/polySurface3" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.85665, -7.98555, 1.59093)
+material_override = SubResource("StandardMaterial3D_xuiv4")

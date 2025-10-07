@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://bcxpq0unmo18v"]
+
+[ext_resource type="PackedScene" uid="uid://l5rq16ebbvi5" path="res://Assets/ScreamJamProto.glb" id="1_n1for"]
+
+[node name="ScreamJamProto" instance=ExtResource("1_n1for")]

@@ -1,0 +1,86 @@
+[gd_scene load_steps=9 format=3 uid="uid://ca3fna4pcnvld"]
+
+[ext_resource type="Script" uid="uid://dba4o0ndff5c5" path="res://Scripts/PlayerController/mouse_capture.gd" id="1_k0pio"]
+[ext_resource type="Script" uid="uid://b0qwp7e2i42ss" path="res://Scripts/PlayerController/player_controller.gd" id="1_veqsw"]
+[ext_resource type="Script" uid="uid://dkamj1yvlpw6n" path="res://Scripts/PlayerController/camera_controller.gd" id="2_kfrkp"]
+[ext_resource type="Texture2D" uid="uid://hide37e8ct0n" path="res://icon.svg" id="4_gym7l"]
+[ext_resource type="Shader" uid="uid://dq6c3qpkw1hs6" path="res://Assets/shaders/vhs.gdshader" id="4_kfrkp"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_t5xx7"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_k0pio"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gym7l"]
+shader = ExtResource("4_kfrkp")
+shader_parameter/overlay = true
+shader_parameter/scanlines_opacity = 0.073
+shader_parameter/scanlines_width = 0.118
+shader_parameter/grille_opacity = 0.009
+shader_parameter/resolution = Vector2(6000, 8000)
+shader_parameter/pixelate = true
+shader_parameter/roll = false
+shader_parameter/roll_speed = 8.0
+shader_parameter/roll_size = 0.0
+shader_parameter/roll_variation = 4.726
+shader_parameter/distort_intensity = 0.014
+shader_parameter/noise_opacity = 0.08
+shader_parameter/noise_speed = 3.075
+shader_parameter/static_noise_intensity = 0.03
+shader_parameter/aberration = 0.01
+shader_parameter/brightness = 1.4
+shader_parameter/discolor = false
+shader_parameter/warp_amount = 0.0
+shader_parameter/clip_warp = false
+shader_parameter/vignette_intensity = 1.17
+shader_parameter/vignette_opacity = 0.512
+
+[node name="PlayerController" type="CharacterBody3D"]
+script = ExtResource("1_veqsw")
+debug = true
+
+[node name="PlaceHolderMesh" type="MeshInstance3D" parent="."]
+cast_shadow = 0
+gi_mode = 2
+mesh = SubResource("CapsuleMesh_t5xx7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_k0pio")
+
+[node name="CameraController" type="Node3D" parent="." node_paths=PackedStringArray("player_controller", "component_mouse_capture")]
+script = ExtResource("2_kfrkp")
+player_controller = NodePath("..")
+component_mouse_capture = NodePath("../Components/MouseCapture")
+
+[node name="Camera3D" type="Camera3D" parent="CameraController"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+rotation_edit_mode = 1
+current = true
+fov = 95.0
+
+[node name="Components" type="Node" parent="."]
+
+[node name="MouseCapture" type="Node" parent="Components" node_paths=PackedStringArray("camera_controller")]
+script = ExtResource("1_k0pio")
+debug = true
+camera_controller = NodePath("../../CameraController")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Icon" type="Sprite2D" parent="CanvasLayer"]
+visible = false
+position = Vector2(168, 121)
+texture = ExtResource("4_gym7l")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_gym7l")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="light" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.40612, 0)
+light_color = Color(1, 0.723798, 0.657355, 1)
+omni_range = 19.111

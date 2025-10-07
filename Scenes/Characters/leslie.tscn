@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://d4egpk63ajx7"]
+
+[ext_resource type="Texture2D" uid="uid://k6jskygfq0qg" path="res://Assets/Characters/Leslie_Sprite/Leslie_Grin.png" id="1_0c3pp"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hjj4k"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_0c3pp")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="Leslie" type="Node3D"]
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00925887, 0.822365, -0.00148106)
+gi_mode = 2
+pixel_size = 0.0016
+billboard = 2
+shaded = true
+double_sided = false
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_hjj4k")
+animation = &"idle"
